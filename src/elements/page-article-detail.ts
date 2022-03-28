@@ -32,9 +32,22 @@ export class PageArticleDetail extends AlwatrElement {
       --padding-end: 8px;
     }
 
+    ion-card-title {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
     img {
       max-width: 100%;
       border: 0;
+    }
+
+    ion-card-content {
+      line-height: 22px;
+    }
+
+    p {
+      font-size: inherit !important;
     }
   `;
 
@@ -149,6 +162,18 @@ export class PageArticleDetail extends AlwatrElement {
             <p>۱. پیروان این عقیده از نعمت عقل محروم هستند!</p>
             <p>۲. به نظر می‌رسد ایشان مارو اسکول فرموده‌اند با این ادعای خنده دارشان!</p>
             <p>۳. حتی در قرن حاضر و با این همه پیشرفت بشریت هنوز نسل تهی مغزان منقرض نشده!</p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>English font test</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>This is a test paragraph with a lot of text for testing the english font!</p>
+            <p>0123456789 @%$#^&*()</p>
+            <p>۰۱۲۳۴۵۶۷۸۹</p>
+            <p>ك ک پ ژ ی ئ &#1873;</p>
           </ion-card-content>
         </ion-card>
       </ion-content>
