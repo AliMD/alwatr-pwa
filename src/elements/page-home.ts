@@ -109,7 +109,7 @@ export class PageHome extends AlwatrElement {
         <div class="menu-container">
           <a
             class="card-image"
-            href=${router.makeUrl({sectionList: ['about-him']})}
+            href=${router.makeUrl({sectionList: ['article', 0]})}
             style="background-image: url('/images/1005.jpeg'); height: 30vw;">
             <h2 style="background-color: rgba(160, 122, 75, 90%);">احمد بصری کیست؟</h2>
           </a>

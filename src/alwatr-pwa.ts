@@ -133,9 +133,6 @@ export class AlwatrPwa extends AlwatrElement {
       'bookmarks': {
         render: () => html`<page-bookmarks></page-bookmarks>`,
       },
-      'about-him': {
-        render: () => html`<page-article-detail article-id="1"></page-article-detail>`,
-      },
       'article': {
         render: (route) => html`
           <page-article-detail article-id=${route.sectionList[1]}></page-article-detail>
@@ -151,7 +148,11 @@ export class AlwatrPwa extends AlwatrElement {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    this._listenerList.push(router.signal.addListener(() => this.requestUpdate()));
+    this._listenerList.push(router.signal.addListener((route) => {
+      this._logger.logMethodArgs('routeChanged', {route});
+      this._hideTabBar = (route.sectionList[0] === 'article');
+      this.requestUpdate();
+    }, {receivePrevious: true}));
     // TODO: make `hide-tab-bar` signal and bind to this._hideTabBar
   }
 
