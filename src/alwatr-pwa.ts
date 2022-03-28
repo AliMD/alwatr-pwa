@@ -8,6 +8,7 @@ import './elements/page-home';
 import './elements/page-article-list';
 import './elements/page-article-detail';
 import './elements/page-bookmarks';
+import './elements/page-search';
 import {mainTabBar} from './config';
 
 import type {RoutesConfig} from '@alwatr/router';
@@ -89,12 +90,6 @@ export class AlwatrPwa extends AlwatrElement {
       z-index: 0;
     }
 
-    page-search {
-      font-size: 1.4em;
-      padding-top: 10vh;
-      text-align: center;
-    }
-
     /* This will be displayed only on lazy loading. */
     [unresolved]::after {
       content: '...';
@@ -139,7 +134,7 @@ export class AlwatrPwa extends AlwatrElement {
         `,
       },
       'search': {
-        render: () => html`<page-search article-id="1">در دست ساخت...</page-search>`,
+        render: () => html`<page-search article-id="1"></page-search>`,
       },
     },
   };
