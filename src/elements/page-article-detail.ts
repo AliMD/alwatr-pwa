@@ -1,5 +1,6 @@
 import {css, html, CSSResultGroup} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
+import {state} from 'lit/decorators/state.js';
 
 import {AlwatrElement} from '../alwatr-debt/alwatr-element';
 
@@ -36,6 +37,14 @@ export class PageArticleDetail extends AlwatrElement {
       font-weight: 500;
     }
 
+    .player {
+      font-size: 16px !important;
+    }
+
+    .player ion-icon {
+      font-size: 28px !important;
+    }
+
     img {
       max-width: 100%;
       border: 0;
@@ -49,6 +58,12 @@ export class PageArticleDetail extends AlwatrElement {
       font-size: inherit !important;
     }
   `;
+
+  @state()
+  protected _playing = false;
+
+  @state()
+  protected _bookmarked = false;
 
   protected _listenerList: Array<unknown> = [];
 
@@ -67,21 +82,39 @@ export class PageArticleDetail extends AlwatrElement {
       <ion-header translucent dir="rtl">
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-back-button default-href="/" text=""></ion-back-button>
+            <ion-button>
+              <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
           </ion-buttons>
+
           <ion-title>بررسی ادعای اول</ion-title>
-          <ion-progress-bar value="0.1" dir="ltr"></ion-progress-bar>
         </ion-toolbar>
       </ion-header>
 
-      <ion-footer translucent dir="rtl">
+      <ion-footer dir="rtl">
+        <ion-progress-bar value="0" dir="ltr"></ion-progress-bar>
         <ion-toolbar>
-          <ion-buttons slot="primary">
-            <ion-icon slot="icon-only" name="play"></ion-back-button>
+          <ion-buttons slot="start">
+            <ion-button class="player" @click=${this._togglePlay}>
+              <ion-icon
+                slot="start"
+                name=${this._playing ? 'pause-circle-outline' : 'play-circle'}
+              ></ion-icon>
+              پخش صوت این مطلب
+            </ion-button>
           </ion-buttons>
-          <ion-title>پادکست صوتی این مطلب</ion-title>
-          <ion-progress-bar value="0.4" dir="ltr"></ion-progress-bar>
-        </ion-toolbar>
+
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+            </ion-button>
+            <ion-button @click=${this._toggleBookmark}>
+              <ion-icon
+                slot="icon-only"
+                name=${this._bookmarked ? 'bookmark' : 'bookmark-outline'}
+              ></ion-icon>
+            </ion-button>
+          </ion-buttons>
       </ion-footer>
 
       <ion-content fullscreen dir="rtl">
@@ -89,7 +122,7 @@ export class PageArticleDetail extends AlwatrElement {
           <img src="/images/1014.jpeg" />
           <ion-card-header>
             <ion-card-subtitle>بررسی حجت بودن خواب در شناخت امام</ion-card-subtitle>
-            <ion-card-title>تمسک به رؤیا و استخاره برای اثبات ادعاها</ion-card-title>
+            <ion-card-title>تمسک به رؤیا برای اثبات ادعاها</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             احمد بصری «خواب» را به عنوان یکی از شهادت‌ های پروردگار دانسته و آن را حجت قطعی برای اثبات ادعاهای خود در وصایت، نیابت و سفارت امام زمان(عج) معرفی کرده است! همچنین او ادعا می‌ کند که هر کسی با نیت حقانیت من «استخاره» کند، قرآن کریم سخن مرا تایید خواهد کرد! در این مقاله وزانت و اعتبار ادعاهای او، همچنین اعتبار رویا و استخاره در قبول چنین ادعاهایی بررسی می شود.
@@ -177,5 +210,30 @@ export class PageArticleDetail extends AlwatrElement {
         </ion-card>
       </ion-content>
     `;
+  }
+
+  protected _toggleBookmark(): void {
+    this._logger.logMethod('_toggleBookmark');
+    this._bookmarked = !this._bookmarked;
+  }
+
+  protected _togglePlay(): void {
+    this._logger.logMethod('_togglePlay');
+    this._playing = !this._playing;
+    this._updateProgress();
+  }
+
+  private _progress = 0;
+  protected _updateProgress(): void {
+    if (!this._playing) return;
+    setTimeout(() => {
+      this._progress += 1;
+      if (this._progress > 100) {
+        this._progress = 0;
+        this._playing = false;
+      }
+      this.renderRoot.querySelector<HTMLElement & {value: number}>('ion-progress-bar')!.value = this._progress / 100;
+      this._updateProgress();
+    }, 100);
   }
 }
