@@ -49,23 +49,14 @@ export class PageArticleList extends AlwatrElement {
       -webkit-appearance: none
     }
 
-    ion-card.md {
-      margin: var(--gap) 8px;
+    ion-card-title {
+      font-size: 22px;
+      font-weight: 500;
     }
 
     ion-card img {
       max-width: 100%;
       border: 0;
-    }
-
-    .toolbar-searchbar.md {
-      --min-height: 46px;
-    }
-
-    ion-toolbar.md ion-searchbar {
-      height: 46px;
-      padding-bottom: 0;
-      align-items: flex-start;
     }
   `;
 
@@ -95,12 +86,11 @@ export class PageArticleList extends AlwatrElement {
         </ion-toolbar>
         <ion-toolbar>
           <ion-searchbar
-            mode="ios"
             autocomplete="on"
             placeholder="جستجو ..."
             .value=${live(this._search)}
             @ionChange=${this._onSearch}
-          ></ion-content>
+          ></ion-searchbar>
         </ion-toolbar>
       </ion-header>
 
