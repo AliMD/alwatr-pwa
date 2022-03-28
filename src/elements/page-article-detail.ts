@@ -82,7 +82,7 @@ export class PageArticleDetail extends AlwatrElement {
       <ion-header translucent dir="rtl">
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button>
+            <ion-button @click=${this._back}>
               <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -210,6 +210,11 @@ export class PageArticleDetail extends AlwatrElement {
         </ion-card>
       </ion-content>
     `;
+  }
+
+  protected _back(): void {
+    this._logger.logMethod('_back');
+    history.back();
   }
 
   protected _toggleBookmark(): void {
