@@ -27,20 +27,21 @@ export class PageHome extends AlwatrElement {
     :host {
       display: flex;
       flex-direction: column;
-      --gap: 12px
+      --page-padding: 16px;
+      --item-gap: 12px
     }
 
     ion-content {
-      --padding-start: var(--gap);
-      --padding-end: var(--gap);
-      --padding-top: var(--gap);
-      --padding-bottom: var(--gap);
+      --padding-start: var(--page-padding);
+      --padding-end: var(--page-padding);
+      --padding-top: var(--page-padding);
+      --padding-bottom: var(--page-padding);
     }
 
     .menu-container {
       display: flex;
       flex-direction: column;
-      gap: var(--gap);
+      gap: var(--item-gap);
     }
 
     .card-image {

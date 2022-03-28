@@ -36,12 +36,6 @@ export class PageArticleList extends AlwatrElement {
     :host {
       display: flex;
       flex-direction: column;
-      --gap: 16px;
-    }
-
-    ion-content {
-      --padding-start: 8px;
-      --padding-end: 8px;
     }
 
     input[type=search]::-webkit-search-cancel-button,

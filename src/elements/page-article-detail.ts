@@ -27,9 +27,8 @@ export class PageArticleDetail extends AlwatrElement {
       flex-direction: column;
     }
 
-    ion-content {
-      --padding-start: 8px;
-      --padding-end: 8px;
+    ion-card {
+      margin: 16px;
     }
 
     ion-card-title {
