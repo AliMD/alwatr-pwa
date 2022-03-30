@@ -27,20 +27,22 @@ export class PageHome extends AlwatrElement {
     :host {
       display: flex;
       flex-direction: column;
-      --gap: 12px
+      --page-padding: 16px;
+      --item-gap: 12px
     }
 
     ion-content {
-      --padding-start: var(--gap);
-      --padding-end: var(--gap);
-      --padding-top: var(--gap);
-      --padding-bottom: var(--gap);
+      --padding-start: var(--page-padding);
+      --padding-end: var(--page-padding);
+      --padding-top: var(--page-padding);
+      --padding-bottom: var(--page-padding);
     }
 
     .menu-container {
       display: flex;
       flex-direction: column;
-      gap: var(--gap);
+      align-items: stretch;
+      gap: var(--item-gap);
     }
 
     .card-image {
@@ -52,18 +54,17 @@ export class PageHome extends AlwatrElement {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
-      width: 100%;
       height: 35vw;
       border-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 12%) 0px 4px 16px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
     }
 
     .card-image h2 {
       color: white;
       font-weight: 400;
       margin: auto;
-      padding: 0 14px;
-      border-radius: 8px;
+      padding: 0.3em 1.2em;
+      border-radius: 6px;
       font-size: 20px;
     }
 
@@ -82,6 +83,84 @@ export class PageHome extends AlwatrElement {
     .card-group .card-image h2 {
       font-size: 16px;
     }
+
+    .card-image.about-him {
+      background-image: url('/images/1005.jpeg');
+      height: 30vw;
+    }
+    .card-image.about-him h2 {
+      font-size: 19px;
+      background-color: rgba(160, 122, 75, 0.9);
+    }
+
+    .card-image.beliefs {
+      height: 50vw;
+      background-image: url('/images/1014.jpeg');
+    }
+    .card-image.beliefs h2 {
+      background-color: rgba(122, 174, 185, 0.9);
+    }
+
+    .card-image.imamology {
+      height: 40vw;
+      background-image: url('/images/1059.jpeg');
+    }
+    .card-image.imamology h2 {
+      background-color: rgba(166, 138, 121, 0.9);
+    }
+
+    .card-image.conclusion {
+      background-image: url('/images/1020.jpeg');
+    }
+    .card-image.conclusion h2 {
+      background-color: rgba(219, 121, 63, 0.9);
+    }
+
+    .card-image.articles {
+      background-image: url('/images/1010.jpeg');
+    }
+    .card-image.articles h2 {
+      background-color: rgba(86, 34, 23, 0.9);
+    }
+
+    .card-image.contact {
+      background-image: url('/images/1000.jpeg');
+    }
+    .card-image.contact h2 {
+      background-color: rgba(6, 126, 147, 0.9);
+    }
+
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      .card-image h2 {
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+      }
+
+      .card-image.about-him h2 {
+        background-color: rgba(160, 122, 75, 0.5);
+      }
+
+      .card-image.beliefs h2 {
+        background-color: rgba(122, 174, 185, 0.5);
+      }
+
+      .card-image.imamology h2 {
+        background-color: rgba(166, 138, 121, 0.5);
+      }
+
+      .card-image.conclusion h2 {
+        background-color: rgba(219, 121, 63, 0.5);
+      }
+
+      .card-image.articles h2 {
+        background-color: rgba(86, 34, 23, 0.5);
+      }
+
+      .card-image.contact h2 {
+        background-color: rgba(6, 126, 147, 0.5);
+      }
+    }
+
   `;
 
   private _listenerList: Array<unknown> = [];
@@ -98,64 +177,32 @@ export class PageHome extends AlwatrElement {
 
   override render(): TemplateResult {
     return html`
-      <ion-header dir="rtl">
+      <ion-header translucent dir="rtl">
         <ion-toolbar>
-          <ion-title>احمد الحسن بصری (الیمانی)</ion-title>
+          <ion-title>بررسی جریان احمد بصری</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
         <div class="menu-container">
-          <a
-            class="card-image"
-            href=${router.makeUrl({sectionList: ['about-him']})}
-            style="background-image: url('/images/1005.jpeg'); height: 30vw;">
-            <h2 style="background-color: rgba(160, 122, 75, 90%);">احمد بصری کیست؟</h2>
+          <a class="card-image about-him" href=${router.makeUrl({sectionList: ['article', 0]})}>
+            <h2>احمد اسماعیل بصری کیست؟</h2>
           </a>
-          <a
-            class="card-image"
-            href=${router.makeUrl({sectionList: ['beliefs']})}
-            style="background-image: url('/images/1014.jpeg'); height: 50vw;">
-            <h2 style="background-color: rgba(122, 174, 185, 90%);">باورها و اعتقادات</h2>
+          <a class="card-image beliefs" href=${router.makeUrl({sectionList: ['beliefs']})}>
+            <h2>باورها و اعتقادات</h2>
           </a>
-          <a
-            class="card-image"
-            href=${router.makeUrl({sectionList: ['articles']})}
-            style="background-image: url('/images/1010.jpeg');">
-            <h2 style="background-color: rgba(60, 78, 83, 90%);">مقالات</h2>
+          <a class="card-image imamology" href=${router.makeUrl({sectionList: ['beliefs']})}>
+            <h2>راه‌های شناخت حجت خدا</h2>
+          </a>
+          <a class="card-image conclusion" href=${router.makeUrl({sectionList: ['articles']})}>
+            <h2>جمع‌بندی</h2>
           </a>
           <div class="card-group">
-            <a
-              class="card-image"
-              href=${router.makeUrl({sectionList: ['articles']})}
-              style="background-image: url('/images/1078.jpeg');">
-              <h2 style="background-color: rgba(69, 50, 83, 0.9);">ویدیوها</h2>
+            <a class="card-image articles" href=${router.makeUrl({sectionList: ['articles']})}>
+              <h2>مقالات</h2>
             </a>
-            <a
-              class="card-image"
-              href=${router.makeUrl({sectionList: ['articles']})}
-              style="background-image: url('/images/1059.jpeg');">
-              <h2 style="background-color: rgba(166, 138, 121, 90%);">پادکست</h2>
-            </a>
-          </div>
-          <a
-            class="card-image"
-            href=${router.makeUrl({sectionList: ['bookmarks']})}
-            style="background-image: url('/images/1025.jpeg');">
-            <h2 style="background-color: rgba(171, 185, 80, 90%);">عنوان نمونه</h2>
-          </a>
-          <div class="card-group">
-            <a
-              class="card-image"
-              href=${router.makeUrl({sectionList: ['articles']})}
-              style="background-image: url('/images/1071.jpeg');">
-              <h2 style="background-color: rgba(28, 117, 120, 0.9);">وب‌سایت‌ها</h2>
-            </a>
-            <a
-              class="card-image"
-              href=${router.makeUrl({sectionList: ['articles']})}
-              style="background-image: url('/images/1067.jpeg');">
-              <h2 style="background-color: rgba(176, 134, 105, 0.9);">شبکه‌های اجتماعی</h2>
+            <a class="card-image contact" href=${router.makeUrl({sectionList: ['articles']})}>
+              <h2>ارتباط با ما</h2>
             </a>
           </div>
         </div>

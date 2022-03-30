@@ -7,6 +7,8 @@ import {AlwatrElement} from './alwatr-debt/alwatr-element';
 import './elements/page-home';
 import './elements/page-article-list';
 import './elements/page-article-detail';
+import './elements/page-bookmarks';
+import './elements/page-search';
 import {mainTabBar} from './config';
 
 import type {RoutesConfig} from '@alwatr/router';
@@ -55,9 +57,25 @@ export class AlwatrPwa extends AlwatrElement {
       contain: size layout style;
     }
 
+    ion-tab-bar {
+      height: 56px;
+    }
+
+    ion-tab-button {
+      letter-spacing: 0;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    ion-tab-button ion-icon {
+      font-size: 22px;
+    }
+
     page-home,
     page-article-list,
-    page-article-detail {
+    page-article-detail,
+    page-bookmarks,
+    page-search {
       inset: 0;
       left: 0;
       right: 0;
@@ -99,24 +117,24 @@ export class AlwatrPwa extends AlwatrElement {
     map: (route) => this._activePage = route.sectionList[0]?.toString().trim() || 'home',
     list: {
       'home': {
-        render: () => html`<page-home unresolved></page-home>`,
+        render: () => html`<page-home></page-home>`,
       },
       'beliefs': {
-        render: () => html`<page-article-list type="card" unresolved></page-article-list>`,
+        render: () => html`<page-article-list type="card"></page-article-list>`,
       },
       'articles': {
-        render: () => html`<page-article-list type="mini-card" unresolved></page-article-list>`,
+        render: () => html`<page-article-list type="mini-card"></page-article-list>`,
       },
       'bookmarks': {
-        render: () => html`<page-article-list type="minimal" unresolved></page-article-list>`,
-      },
-      'about-him': {
-        render: () => html`<page-article-detail article-id="1" unresolved>در دست ساخت...</page-article-detail>`,
+        render: () => html`<page-bookmarks></page-bookmarks>`,
       },
       'article': {
         render: (route) => html`
-          <page-article-detail article-id=${route.sectionList[1]}>در دست ساخت...</page-article-detail>
+          <page-article-detail article-id=${route.sectionList[1]}></page-article-detail>
         `,
+      },
+      'search': {
+        render: () => html`<page-search article-id="1"></page-search>`,
       },
     },
   };
@@ -125,7 +143,11 @@ export class AlwatrPwa extends AlwatrElement {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    this._listenerList.push(router.signal.addListener(() => this.requestUpdate()));
+    this._listenerList.push(router.signal.addListener((route) => {
+      this._logger.logMethodArgs('routeChanged', {route});
+      this._hideTabBar = (route.sectionList[0] === 'article');
+      this.requestUpdate();
+    }, {receivePrevious: true}));
     // TODO: make `hide-tab-bar` signal and bind to this._hideTabBar
   }
 

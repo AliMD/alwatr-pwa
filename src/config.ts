@@ -4,20 +4,25 @@ export const mainTabBar = [
     title: 'خانه',
     icon: 'home',
   },
-  {
-    id: 'about-him',
-    title: 'احمد الحسن',
-    icon: 'person',
-  },
+  // {
+  //   id: 'about-him',
+  //   title: 'احمد الحسن',
+  //   icon: 'person',
+  // },
   {
     id: 'beliefs',
     title: 'اعتقادات',
-    icon: 'layers',
+    icon: 'chatbubbles',
   },
   {
     id: 'articles',
     title: 'مقالات',
     icon: 'newspaper',
+  },
+  {
+    id: 'search',
+    title: 'جستجو',
+    icon: 'search',
   },
   {
     id: 'bookmarks',
@@ -27,6 +32,12 @@ export const mainTabBar = [
 ] as const;
 
 export const sampleDataList = [
+  {
+    id: 0,
+    title: 'مقدمه‌ای بر جریان احمد بصری',
+    description: 'زندگی‌نامه و بررسی تحولات زندگی احمد بصری از تولد تا کنون',
+    image: 'images/1005.jpeg',
+  },
   {
     id: 1,
     title: 'چگونگی پیدایش فرقه یمانی',
