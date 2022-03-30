@@ -106,6 +106,9 @@ export class PageArticleDetail extends AlwatrElement {
 
           <ion-buttons slot="end">
             <ion-button>
+              <ion-icon slot="icon-only" name="chatbubble-outline"></ion-icon>
+            </ion-button>
+            <ion-button>
               <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
             </ion-button>
             <ion-button @click=${this._toggleBookmark}>
