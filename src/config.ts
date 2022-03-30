@@ -34,7 +34,7 @@ export const mainTabBar = [
 export const sampleDataList = [
   {
     id: 0,
-    title: 'احمد الحسن بصری کیست',
+    title: 'مقدمه‌ای بر جریان احمد بصری',
     description: 'زندگی‌نامه و بررسی تحولات زندگی احمد بصری از تولد تا کنون',
     image: 'images/1005.jpeg',
   },
