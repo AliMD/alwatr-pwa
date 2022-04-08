@@ -163,7 +163,7 @@ export class PageHome extends AlwatrElement {
 
   `;
 
-  private _listenerList: Array<unknown> = [];
+  protected _listenerList: Array<unknown> = [];
 
   override connectedCallback(): void {
     super.connectedCallback();
