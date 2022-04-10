@@ -28,7 +28,7 @@ export class PageHome extends AlwatrElement {
       display: flex;
       flex-direction: column;
       --page-padding: 16px;
-      --item-gap: 12px
+      --item-gap: 12px;
     }
 
     ion-content {
@@ -160,10 +160,9 @@ export class PageHome extends AlwatrElement {
         background-color: rgba(6, 126, 147, 0.5);
       }
     }
-
   `;
 
-  private _listenerList: Array<unknown> = [];
+  protected _listenerList: Array<unknown> = [];
 
   override connectedCallback(): void {
     super.connectedCallback();

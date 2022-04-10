@@ -11,7 +11,6 @@ import {sampleDataList} from '../config';
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
 
-
 declare global {
   interface HTMLElementTagNameMap {
     'page-search': PageSearch;
@@ -37,9 +36,9 @@ export class PageSearch extends AlwatrElement {
       flex-direction: column;
     }
 
-    input[type=search]::-webkit-search-cancel-button,
-    input[type=search]::-webkit-search-decoration {
-      -webkit-appearance: none
+    input[type='search']::-webkit-search-cancel-button,
+    input[type='search']::-webkit-search-decoration {
+      -webkit-appearance: none;
     }
   `;
 
@@ -87,9 +86,10 @@ export class PageSearch extends AlwatrElement {
   }
 
   protected _renderList(): unknown {
-    const list = this._search?.length > 0 ?
-      sampleDataList.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
-      [];
+    const list =
+      this._search?.length > 0 ?
+        sampleDataList.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
+        [];
 
     return html`
       <ion-list lines="inset">

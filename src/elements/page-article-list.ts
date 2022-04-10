@@ -12,7 +12,6 @@ import {sampleDataList} from '../config';
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
 
-
 declare global {
   interface HTMLElementTagNameMap {
     'page-article-list': PageArticleList;
@@ -38,9 +37,9 @@ export class PageArticleList extends AlwatrElement {
       flex-direction: column;
     }
 
-    input[type=search]::-webkit-search-cancel-button,
-    input[type=search]::-webkit-search-decoration {
-      -webkit-appearance: none
+    input[type='search']::-webkit-search-cancel-button,
+    input[type='search']::-webkit-search-decoration {
+      -webkit-appearance: none;
     }
 
     ion-card-title {
@@ -101,9 +100,10 @@ export class PageArticleList extends AlwatrElement {
   }
 
   protected _renderList(): unknown {
-    const list = this._search?.length > 0 ?
-      sampleDataList.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
-      sampleDataList.concat(sampleDataList); // duplicate list for demo
+    const list =
+      this._search?.length > 0 ?
+        sampleDataList.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
+        sampleDataList.concat(sampleDataList); // duplicate list for demo
 
     switch (this.type) {
       case 'minimal':

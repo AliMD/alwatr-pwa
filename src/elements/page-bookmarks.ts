@@ -12,7 +12,6 @@ import {sampleDataList} from '../config';
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
 
-
 declare global {
   interface HTMLElementTagNameMap {
     'page-bookmarks': PageBookmarks;
@@ -44,9 +43,9 @@ export class PageBookmarks extends AlwatrElement {
       --padding-end: 8px;
     }
 
-    input[type=search]::-webkit-search-cancel-button,
-    input[type=search]::-webkit-search-decoration {
-      -webkit-appearance: none
+    input[type='search']::-webkit-search-cancel-button,
+    input[type='search']::-webkit-search-decoration {
+      -webkit-appearance: none;
     }
 
     ion-toolbar {
@@ -122,11 +121,11 @@ export class PageBookmarks extends AlwatrElement {
         </ion-toolbar>
         <ion-toolbar>
           <ion-searchbar
-              autocomplete="on"
-              placeholder="جستجو ..."
-              .value=${live(this._search)}
-              @ionChange=${this._onSearch}
-            ></ion-searchbar>
+            autocomplete="on"
+            placeholder="جستجو ..."
+            .value=${live(this._search)}
+            @ionChange=${this._onSearch}
+          ></ion-searchbar>
         </ion-toolbar>
       </ion-header>
       <ion-content fullscreen dir="rtl">
@@ -142,9 +141,10 @@ export class PageBookmarks extends AlwatrElement {
   }
 
   protected _renderList(): unknown {
-    const list = this._search?.length > 0 ?
-      this._list.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
-      this._list;
+    const list =
+      this._search?.length > 0 ?
+        this._list.filter((item) => (item.title + item.description).indexOf(this._search) !== -1) :
+        this._list;
 
     return html`
       <ion-list lines="inset">
