@@ -15,7 +15,6 @@ import type {RoutesConfig} from '@alwatr/router';
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
 
-
 declare global {
   interface HTMLElementTagNameMap {
     'alwatr-pwa': AlwatrPwa;
@@ -46,7 +45,7 @@ export class AlwatrPwa extends AlwatrElement {
       justify-content: space-between;
       contain: layout size style;
       overflow: hidden;
-      z-index: 0
+      z-index: 0;
     }
 
     .page-container {
@@ -114,26 +113,24 @@ export class AlwatrPwa extends AlwatrElement {
   protected _routes: RoutesConfig = {
     // TODO: refactor route, we need to get active page!
     // TODO: ability to redirect!
-    map: (route) => this._activePage = route.sectionList[0]?.toString().trim() || 'home',
+    map: (route) => (this._activePage = route.sectionList[0]?.toString().trim() || 'home'),
     list: {
-      'home': {
+      home: {
         render: () => html`<page-home></page-home>`,
       },
-      'beliefs': {
+      beliefs: {
         render: () => html`<page-article-list type="card"></page-article-list>`,
       },
-      'articles': {
+      articles: {
         render: () => html`<page-article-list type="mini-card"></page-article-list>`,
       },
-      'bookmarks': {
+      bookmarks: {
         render: () => html`<page-bookmarks></page-bookmarks>`,
       },
-      'article': {
-        render: (route) => html`
-          <page-article-detail article-id=${route.sectionList[1]}></page-article-detail>
-        `,
+      article: {
+        render: (route) => html`<page-article-detail article-id=${route.sectionList[1]}></page-article-detail>`,
       },
-      'search': {
+      search: {
         render: () => html`<page-search article-id="1"></page-search>`,
       },
     },
@@ -143,11 +140,16 @@ export class AlwatrPwa extends AlwatrElement {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    this._listenerList.push(router.signal.addListener((route) => {
-      this._logger.logMethodArgs('routeChanged', {route});
-      this._hideTabBar = (route.sectionList[0] === 'article');
-      this.requestUpdate();
-    }, {receivePrevious: true}));
+    this._listenerList.push(
+        router.signal.addListener(
+            (route) => {
+              this._logger.logMethodArgs('routeChanged', {route});
+              this._hideTabBar = route.sectionList[0] === 'article';
+              this.requestUpdate();
+            },
+            {receivePrevious: true},
+        ),
+    );
     // TODO: make `hide-tab-bar` signal and bind to this._hideTabBar
   }
 
@@ -158,9 +160,7 @@ export class AlwatrPwa extends AlwatrElement {
 
   override render(): TemplateResult {
     return html`
-      <div class="page-container">
-        ${router.outlet(this._routes)}
-      </div>
+      <div class="page-container">${router.outlet(this._routes)}</div>
       ${this._renderTabBar()}
     `;
   }
