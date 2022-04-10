@@ -12,6 +12,7 @@
   "cSpell.words": [
     "alwatr",
     "khafan",
+    "Loggable",
     "mastmalize",
     "Mihandoost",
     "noncallable",
@@ -25,5 +26,5 @@
     "src/**/*.js": true,
     "src/**/*.d.ts": true,
     "src/**/*.tsbuildinfo": true
-  },
+  }
 }
